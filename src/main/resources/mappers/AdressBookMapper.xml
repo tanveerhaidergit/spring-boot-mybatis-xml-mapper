@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper
+	namespace='com.techwizard.addressbook.mappers.AdressBookMapper'>
+
+
+	<select id='finaAllAddresses'
+		resultType='com.techwizard.addressbook.AddressBook'>
+		SELECT id, first_name, last_name, work_phone, cell_phone,
+		email_id,
+		date_of_birth, street, city, state, zip_code
+		from ADDRESS_BOOK
+	</select>
+
+	<select id='findAddressByEmailId' parameterType='String'
+		resultType='com.techwizard.addressbook.AddressBook'>
+		select id, first_name, last_name, work_phone, cell_phone,
+		email_id,
+		date_of_birth, street, city, state, zip_code
+		from ADDRESS_BOOK
+		WHERE email_id = #{emailId}
+	</select>
+
+	<!-- Instead of referencing Fully Qualified Class Names we can register 
+		Aliases in MyBatisConfiguration and use Alias names. -->
+
+	<select id='findAddressByFirstNameAndDateOfBirth'
+		parameterType='AddressBook'
+		resultType='com.techwizard.addressbook.AddressBook'>
+		select id, first_name, last_name, work_phone, cell_phone,
+		email_id,
+		date_of_birth, street, city, state, zip_code
+		from ADDRESS_BOOK
+		WHERE first_name = #{firstName} and date_of_birth=#{dateOfBirth}
+	</select>
+
+	<insert id='insertAddress' parameterType='AddressBook'
+		useGeneratedKeys='true' keyProperty='id'>
+		INSERT INTO ADDRESS_BOOK(first_name, last_name, work_phone, cell_phone,email_id,
+		date_of_birth, street, city, state, zip_code)
+		VALUES(#{firstName}, #{lastName}, #{workPhoneNumber},
+		#{cellNumber},#{emailId},#{dateOfBirth},
+		#{street}, #{city}, #{state}, #{zip})
+	</insert>
+	
+	<update id='updateAddress' parameterType='AddressBook'>
+    UPDATE ADDRESS_BOOK 
+    SET
+     work_phone= #{workPhoneNumber},
+     cell_phone= #{cellNumber},
+     street = #{street},
+     city = #{city},
+     state = #{state},
+     zip_code = #{zip}
+    WHERE id = #{id}
+  </update>
+  
+   <delete id='deleteAddress' parameterType='long'>
+    DELETE FROM ADDRESS_BOOK WHERE id = #{id}
+  </delete>
+
+</mapper>

@@ -1,0 +1,62 @@
+-- Below is the base url
+
+
+http://localhost:8082/api/addressbook
+
+****************************************
+retrieve all entries in addressbook
+Method: Post
+url :http://localhost:8082/api/addressbook
+
+**********************************************************8
+--- Retrieve addressbook by emailid
+
+http://localhost:8082/api/addressbook/lmasters4@addtoany.com
+
+-- for firstnameandDateOfBirth
+http://localhost:8082/api/addressbook/firstnameanddateofbirth?firstName=Aleksandr&dateOfBirth=1991-02-23
+
+*****************************************************
+Create request
+
+Method: Post
+http://localhost:8082/api/addressbook
+
+{
+	"firstName": "Beth",
+	"lastName": "Stook",
+	"workPhoneNumber": "602-223-4513",
+	"cellNumber": "402-235-9045",
+	"emailId": "bstook0@altervista.org",
+	"dateOfBirth": "2018-03-30",
+	"street": "0098 Hanover Trail",
+	"city": "Phoenix",
+	"state": "Arizona",
+	"zip": "85053"
+}
+
+************************************************************************************************************************************
+update request
+
+Method : PUT
+
+http://localhost:8082/api/addressbook/1
+{
+	
+	"workPhoneNumber": "602-223-4513",
+	"cellNumber": "402-235-9045",
+	"street": "0098 Hanover Trail",
+	"city": "Phoenix",
+	"state": "Arizona",
+	"zip": "85053"
+}
+
+*********************************************************
+
+delete request:
+
+method : Delete
+
+http://localhost:8082/api/addressbook/1
+
+*******************************************************************8
